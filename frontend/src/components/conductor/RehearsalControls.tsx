@@ -1,4 +1,4 @@
-import { Play, Square, Pause, RotateCcw } from 'lucide-react'
+import { Play, Square, Pause } from 'lucide-react'
 import { useAppStore } from '../../stores/appStore'
 import { useSocketStore } from '../../stores/socketStore'
 

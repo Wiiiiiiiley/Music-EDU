@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from '../utils/uuid'
 
 export default function EnsembleSetupPage() {
   const navigate = useNavigate()
-  const { currentUser, setCurrentEnsemble, currentEnsemble } = useAppStore()
+  const { currentUser, setCurrentEnsemble } = useAppStore()
   const { connect, joinEnsemble } = useSocketStore()
   
   const [ensembleName, setEnsembleName] = useState('')

@@ -8,7 +8,7 @@ import EnsembleSetupPage from './pages/EnsembleSetupPage'
 import ScoreUploadPage from './pages/ScoreUploadPage'
 
 function App() {
-  const { currentEnsemble, currentUser } = useAppStore()
+  const { currentUser } = useAppStore()
 
   return (
     <div className="h-full w-full bg-gray-50">

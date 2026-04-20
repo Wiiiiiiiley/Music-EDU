@@ -52,7 +52,7 @@ interface AppState {
 
 export const useAppStore = create<AppState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       // 用户
       currentUser: null,
       setCurrentUser: (user) => set({ currentUser: user }),
@@ -76,10 +76,15 @@ export const useAppStore = create<AppState>()(
       // 标记
       marks: [],
       addMark: (mark) => set((state) => ({ marks: [...state.marks, mark] })),
-      removeMark: (markId) => set((state) => ({ 
-        marks: state.marks.filter(m => m.id !== markId) 
-      })),
+      removeMark: (markId) => set((state) => ({ marks: state.marks.filter((m: any) => m.id !== markId) })),
       setMarks: (marks) => set({ marks }),
+      clearState: () => set({
+        currentUser: null,
+        currentEnsemble: null,
+        currentScore: null,
+        marks: [],
+        currentPage: 1,
+      }),
       
       // 光标位置
       cursorPositions: {},
@@ -119,17 +124,7 @@ export const useAppStore = create<AppState>()(
       })),
       
       // 清除
-      clearState: () => set({
-        currentUser: null,
-        currentEnsemble: null,
-        currentScore: null,
-        currentPage: 1,
-        currentMeasure: 1,
-        marks: [],
-        cursorPositions: {},
-        isRehearsing: false,
-        rehearsalStartTime: null,
-      })
+      // clearState 已在前面定义
     }),
     {
       name: 'edutempo-storage',

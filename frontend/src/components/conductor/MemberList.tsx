@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Users, Circle } from 'lucide-react'
+import { Users } from 'lucide-react'
 
 interface Member {
   id: string

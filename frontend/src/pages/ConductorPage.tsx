@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Plus, Users, Music, Mic, Settings, LogOut } from 'lucide-react'
+import { Users, Music, Plus, LogOut, Mic } from 'lucide-react'
 import { useAppStore } from '../stores/appStore'
 import { useSocketStore } from '../stores/socketStore'
 import ScoreViewer from '../components/score/ScoreViewer'
@@ -11,7 +11,7 @@ import RehearsalControls from '../components/conductor/RehearsalControls'
 
 export default function ConductorPage() {
   const navigate = useNavigate()
-  const { currentUser, currentEnsemble, currentScore, clearState, marks, addMark } = useAppStore()
+  const { currentUser, currentEnsemble, currentScore, addMark, clearState } = useAppStore()
   const { connect, joinEnsemble, setupEventListeners, isConnected } = useSocketStore()
   const [showMemberList, setShowMemberList] = useState(false)
   const [activeTool, setActiveTool] = useState<'select' | 'pen' | 'highlight' | 'text'>('select')

@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { io, Socket } from 'socket.io-client'
 import type { User, Mark, CursorPosition } from '../types'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+const API_URL = 'https://edutempo-api.wileymei3.workers.dev'
 
 interface SocketState {
   socket: Socket | null

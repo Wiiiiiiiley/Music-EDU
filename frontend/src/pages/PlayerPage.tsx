@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Headphones, Volume2, LogOut, MessageSquare } from 'lucide-react'
+import { Headphones, Volume2, LogOut } from 'lucide-react'
 import { useAppStore } from '../stores/appStore'
 import { useSocketStore } from '../stores/socketStore'
 import ScoreViewer from '../components/score/ScoreViewer'
 import AudioMixer from '../components/player/AudioMixer'
 import CueReceiver from '../components/player/CueReceiver'
-import MarkLayer from '../components/score/MarkLayer'
 
 export default function PlayerPage() {
   const navigate = useNavigate()

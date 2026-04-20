@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
-import { Vex } from 'vexflow'
-import type { Score, Mark } from '../../types'
+import type { Score } from '../../types'
 import { useAppStore } from '../../stores/appStore'
 import { useSocketStore } from '../../stores/socketStore'
 import MarkLayer from './MarkLayer'
@@ -20,11 +19,10 @@ export default function ScoreViewer({
   isConductor 
 }: ScoreViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const { currentUser, currentPage, setCurrentPage, marks, addMark } = useAppStore()
+  const { currentUser, currentPage, setCurrentPage, marks } = useAppStore()
   const { sendMark } = useSocketStore()
   const [isDrawing, setIsDrawing] = useState(false)
   const [drawingPath, setDrawingPath] = useState<{x: number, y: number}[]>([])
-  const [tempMarks, setTempMarks] = useState<Mark[]>([])
   const [textInput, setTextInput] = useState<{x: number, y: number, value: string} | null>(null)
 
   // PDF 渲染模式
@@ -71,11 +69,12 @@ export default function ScoreViewer({
       const mark = {
         scoreId: score.id,
         type: 'DRAWING' as const,
-        data: JSON.stringify({ path: drawingPath }),
+        data: JSON.stringify(drawingPath),
         x: drawingPath[0].x,
         y: drawingPath[0].y,
         page: currentPage,
-        targetSection: selectedSection || undefined
+        targetSection: selectedSection || undefined,
+        creatorId: currentUser?.id || ''
       }
       
       sendMark(mark)
@@ -99,7 +98,8 @@ export default function ScoreViewer({
       x: textInput.x,
       y: textInput.y,
       page: currentPage,
-      targetSection: selectedSection || undefined
+      targetSection: selectedSection || undefined,
+      creatorId: currentUser?.id || ''
     }
 
     sendMark(mark)

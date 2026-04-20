@@ -11,7 +11,6 @@ interface CuePanelProps {
 export default function CuePanel({ selectedSection, currentScore }: CuePanelProps) {
   const { sendCue } = useSocketStore()
   const [bpm, setBpm] = useState(120)
-  const [countIn, setCountIn] = useState(4)
 
   const handleSendCue = (type: 'CLICK' | 'COUNT_IN' | 'METRONOME' | 'DEMO_AUDIO') => {
     sendCue({
