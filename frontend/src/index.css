@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+  
+  html, body, #root {
+    @apply h-full w-full overflow-hidden;
+  }
+  
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+    @apply touch-manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary-600 text-white px-4 py-2 rounded-lg 
+           hover:bg-primary-700 active:bg-primary-800 
+           transition-colors duration-200 
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-lg 
+           hover:bg-gray-50 active:bg-gray-100 
+           transition-colors duration-200;
+  }
+  
+  .btn-conductor {
+    @apply bg-music-conductor text-white px-4 py-2 rounded-lg 
+           hover:bg-red-700 active:bg-red-800 
+           transition-colors duration-200;
+  }
+  
+  .panel {
+    @apply bg-white rounded-xl shadow-sm border border-gray-200;
+  }
+  
+  .score-page {
+    @apply bg-white shadow-lg;
+    aspect-ratio: 210/297;
+  }
+  
+  .annotation-layer {
+    @apply absolute inset-0 pointer-events-none;
+  }
+  
+  .annotation-layer.drawing {
+    @apply pointer-events-auto cursor-crosshair;
+  }
+  
+  .mark-highlight {
+    @apply absolute bg-yellow-300/50 rounded pointer-events-none;
+  }
+  
+  .mark-drawing {
+    @apply absolute pointer-events-none;
+  }
+  
+  .mark-text {
+    @apply absolute bg-white/90 px-2 py-1 rounded shadow-sm text-sm;
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .text-shadow {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  
+  .safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* 乐谱渲染相关样式 */
+.vexflow-container {
+  @apply w-full overflow-auto;
+}
+
+.vexflow-container svg {
+  @apply max-w-none;
+}
+
+/* 节拍器动画 */
+@keyframes metronome-beat {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+.metronome-active {
+  animation: metronome-beat 0.5s ease-in-out;
+}
+
+/* 提示音波纹动画 */
+@keyframes cue-ripple {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+.cue-ripple {
+  @apply absolute w-8 h-8 rounded-full bg-primary-500/30;
+  animation: cue-ripple 1s ease-out forwards;
+}
