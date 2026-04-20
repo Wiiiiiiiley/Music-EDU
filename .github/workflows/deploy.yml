@@ -51,11 +51,14 @@ jobs:
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
           VITE_WS_URL: ${{ secrets.VITE_WS_URL }}
         
+      - name: Copy dist to root
+        run: cp -r frontend/dist dist
+        
       - name: Deploy to Pages
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: edutempo
-          directory: frontend/dist
+          directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
