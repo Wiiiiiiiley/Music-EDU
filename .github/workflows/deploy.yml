@@ -32,7 +32,6 @@ jobs:
   deploy-frontend:
     runs-on: ubuntu-latest
     name: Deploy Frontend (Pages)
-    needs: deploy-backend
     steps:
       - uses: actions/checkout@v4
       

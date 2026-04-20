@@ -11,9 +11,6 @@ router.get('/', async (req, res) => {
       where: ensembleId ? { ensembleId: ensembleId as string } : undefined,
       include: {
         ensemble: true,
-        score: {
-          select: { title: true, composer: true }
-        },
         _count: {
           select: { events: true }
         }
@@ -37,8 +34,7 @@ router.get('/:id', async (req, res) => {
         events: {
           orderBy: { timestamp: 'asc' }
         },
-        ensemble: true,
-        score: true
+        ensemble: true
       }
     });
     
@@ -156,7 +152,7 @@ router.get('/:id/stats', async (req, res) => {
     
     res.json({
       duration: Math.floor(duration / 1000), // 秒
-      eventCounts: events.reduce((acc, e) => ({
+      eventCounts: events.reduce((acc: any, e: any) => ({
         ...acc,
         [e.type]: e._count.type
       }), {})

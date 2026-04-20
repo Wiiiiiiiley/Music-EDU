@@ -141,7 +141,7 @@ router.get('/:id/sections', async (req, res) => {
       }
     });
     
-    res.json(sections.map(s => ({
+    res.json(sections.map((s: any) => ({
       name: s.section,
       memberCount: s._count.section
     })));
